@@ -1,7 +1,8 @@
 // ============================================================================
 // CONFIGURATION & GLOBAL STATE
 // ============================================================================
-const SERVER_URL = 'http://localhost:3000';
+// Use current origin for production (Render) or localhost for development
+const SERVER_URL = window.location.origin;
 let socket;
 let currentFlipbookId = '';
 let currentFrameIndex = 0;
@@ -152,7 +153,8 @@ function debounceSave() {
 // WEBSOCKET CONNECTION
 // ============================================================================
 function connectSocket() {
-    socket = io(SERVER_URL);
+    // Socket.io automatically uses the current origin, so we don't need to pass SERVER_URL
+    socket = io();
 
     socket.on('connect', () => {
         updateConnectionStatus(true);
