@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Flipbook</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Collaborative Flipbook</h1>
+            <div class="connection-status">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="frames-section">
+                <h3>Frames</h3>
+                <div class="frames-list" id="framesList"></div>
+                <button class="add-frame-btn" onclick="addFrame()" id="addFrameBtn">
+                    + Add Frame
+                </button>
+                <div class="playback-controls">
+                    <button class="play-btn" onclick="togglePlayback()" id="playBtn">
+                        ▶ Play
+                    </button>
+                    <div class="speed-control">
+                        <label>Speed:</label>
+                        <input type="range" id="playbackSpeed" class="speed-slider" min="1" max="10" value="5">
+                        <span class="speed-value" id="speedValue">5x</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="sidebar">
+                    <div class="flipbook-controls">
+                        <h3>Flipbook</h3>
+                        
+                        <div class="current-flipbook" id="currentFlipbookInfo" style="display: none;">
+                            <h4>Current Flipbook</h4>
+                            <div class="flipbook-name" id="currentFlipbookName">-</div>
+                            <div class="flipbook-meta" id="currentFlipbookMeta">
+                                <span>Frames: <span id="currentFrameCount">0</span></span>
+                                <span id="currentLastUpdated"></span>
+                            </div>
+                            <div class="current-flipbook-actions">
+                                <button class="btn btn-secondary" onclick="renameCurrentFlipbook()" style="background: #64748b; color: white;">
+                                    Rename
+                                </button>
+                                <button class="btn btn-secondary" onclick="deleteCurrentFlipbook()" style="background: #ef4444; color: white;">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flipbook-input">
+                            <input type="text" id="flipbookId" placeholder="Enter or create flipbook ID">
+                        </div>
+                        <div class="flipbook-actions">
+                            <button class="btn btn-primary" onclick="joinFlipbook()">Join</button>
+                            <button class="btn btn-secondary" onclick="createFlipbook()">Create New</button>
+                        </div>
+
+                        <div class="flipbook-search">
+                            <input type="text" id="flipbookSearch" placeholder="Search flipbooks..." oninput="filterFlipbooks()">
+                        </div>
+
+                        <div class="flipbooks-list" id="flipbooksList">
+                            <div style="text-align: center; color: #64748b; padding: 20px;">
+                                Loading flipbooks...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                <div class="toolbar">
+                    <div class="tool-group">
+                        <label>Color:</label>
+                        <input type="color" id="colorPicker" class="color-picker" value="#000000">
+                    </div>
+                    <div class="tool-group">
+                        <label>Brush Size:</label>
+                        <input type="range" id="brushSize" class="slider" min="1" max="50" value="5">
+                        <span class="slider-value" id="brushSizeValue">5</span>
+                    </div>
+                    <div class="tool-group">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" id="onionSkinToggle" onchange="toggleOnionSkin()">
+                            <span>Onion Skin</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-secondary" onclick="clearCanvas()">Clear</button>
+                    <button class="btn btn-secondary" onclick="deleteCurrentFrame()">Delete Frame</button>
+                </div>
+
+                <div class="canvas-wrapper">
+                    <div class="canvas-container-inner">
+                        <canvas id="onionSkinCanvas" class="onion-skin-canvas" width="800" height="600"></canvas>
+                        <canvas id="drawingCanvas" width="800" height="600"></canvas>
+                    </div>
+                </div>
+
+                <div class="frame-navigation">
+                    <button class="nav-btn" onclick="previousFrame()" id="prevBtn">← Previous</button>
+                    <span class="frame-info" id="frameInfo">Frame 0</span>
+                    <button class="nav-btn" onclick="nextFrame()" id="nextBtn">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for flipbook name input -->
+    <div class="modal" id="flipbookNameModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Create New Flipbook</h3>
+            <input type="text" id="modalFlipbookName" placeholder="Enter flipbook name" autofocus>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmModalAction()">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
