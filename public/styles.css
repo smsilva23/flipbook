@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Special+Elite&display=swap');
+
+:root {
+    --bg-dark: #0d0d0d;
+    --bg-paper: #f7f3e8;
+    --bg-panel: #f1ecdf;
+    --ink: #141414;
+    --ink-mid: #3d3d3d;
+    --ink-muted: #6f6f6f;
+    --accent: #ffffff;
+    --outline: #111111;
+    --shadow: rgba(0, 0, 0, 0.45);
+    --success: #8ccf65;
+    --error: #ff6b6b;
+    --warning: #facc15;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -699,5 +716,320 @@ body {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+/* ============================================================================ 
+   SKETCHBOOK THEME OVERRIDES 
+   ============================================================================ */
+
+body {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    background-color: var(--bg-dark);
+    background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 14px 14px;
+    color: var(--ink);
+    letter-spacing: 0.4px;
+}
+
+.container {
+    background: var(--bg-paper);
+    border: 3px solid var(--outline);
+    border-radius: 16px;
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.header {
+    background: var(--bg-paper);
+    color: var(--ink);
+    border-bottom: 3px dashed var(--outline);
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 16px;
+}
+
+.header h1 {
+    font-size: 14px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.connection-status {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: var(--ink-mid);
+}
+
+.status-dot {
+    background: var(--success);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.status-dot.disconnected {
+    background: var(--error);
+}
+
+.main-content {
+    background: var(--bg-panel);
+}
+
+.content-wrapper {
+    background: var(--bg-panel);
+}
+
+.sidebar {
+    background: var(--bg-panel);
+    border-right: 3px dashed var(--outline);
+}
+
+.flipbook-controls h3,
+.frames-section h3 {
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    color: var(--ink);
+}
+
+.flipbook-input input,
+.flipbook-search input {
+    background: var(--accent);
+    border: 2px solid var(--outline);
+    border-radius: 6px;
+    font-family: 'Special Elite', monospace;
+}
+
+.flipbook-input input:focus,
+.flipbook-search input:focus,
+.modal-content input:focus {
+    border-color: var(--ink);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.current-flipbook {
+    background: var(--bg-panel);
+    border: 2px dashed var(--outline);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.current-flipbook h4,
+.current-flipbook .flipbook-name {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--ink);
+}
+
+.current-flipbook .flipbook-meta,
+.flipbook-item-meta {
+    color: var(--ink-mid);
+    font-family: 'Special Elite', monospace;
+}
+
+.flipbook-item {
+    background: var(--bg-panel);
+    border: 2px dashed var(--outline);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flipbook-item:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+    border-color: var(--ink);
+}
+
+.flipbook-item.active {
+    background: var(--accent);
+    border-color: var(--ink);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+.flipbook-item-name,
+.frame-number {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--ink);
+}
+
+.btn,
+.nav-btn,
+.play-btn,
+.btn-icon,
+.btn-edit,
+.btn-delete {
+    font-family: 'Press Start 2P', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn:hover,
+.nav-btn:hover,
+.play-btn:hover,
+.btn-icon:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+    background: var(--ink);
+    color: var(--bg-paper);
+}
+
+.btn-primary,
+.play-btn {
+    background: var(--ink);
+    color: var(--bg-paper);
+}
+
+.btn-primary:hover,
+.play-btn:hover {
+    background: #2b2b2b;
+}
+
+.btn-secondary {
+    background: var(--bg-panel);
+    color: var(--ink);
+}
+
+.btn-secondary:hover {
+    background: var(--ink);
+    color: var(--bg-paper);
+}
+
+.btn-edit {
+    border-color: var(--ink-mid);
+}
+
+.btn-delete {
+    border-color: var(--error);
+    color: var(--error);
+}
+
+.btn-delete:hover {
+    background: var(--error);
+    color: var(--accent);
+    border-color: var(--error);
+}
+
+.btn-icon {
+    font-size: 10px;
+    padding: 6px 10px;
+}
+
+.play-btn.playing {
+    background: var(--error);
+    border-color: var(--error);
+    color: var(--accent);
+}
+
+.play-btn.playing:hover {
+    background: #d63f3f;
+    border-color: #d63f3f;
+}
+
+.frames-section {
+    background: var(--bg-panel);
+    border-bottom: 3px dashed var(--outline);
+    padding: 12px 16px;
+}
+
+.frame-item {
+    min-width: 110px;
+    background: var(--bg-panel);
+    border: 2px dashed var(--outline);
+}
+
+.frame-item.active {
+    background: var(--accent);
+    color: var(--ink);
+    border-color: var(--ink);
+}
+
+.canvas-container {
+    background: var(--bg-panel);
+    border-left: 3px dashed var(--outline);
+    padding: 16px;
+}
+
+.canvas-wrapper {
+    background: var(--accent);
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+#drawingCanvas {
+    border: 3px dashed var(--ink);
+    background: var(--accent);
+}
+
+.toolbar {
+    background: var(--bg-panel);
+    border: 2px dashed var(--outline);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.tool-group label,
+.speed-control label,
+.speed-value {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--ink-mid);
+}
+
+.color-picker {
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    background: var(--accent);
+}
+
+.slider,
+.speed-slider {
+    accent-color: var(--ink);
+}
+
+.frame-navigation {
+    background: transparent;
+}
+
+.frame-info {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--ink);
+}
+
+.notification {
+    background: var(--ink);
+    color: var(--bg-paper);
+    border: 3px solid var(--bg-paper);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.notification.error {
+    background: var(--error);
+    border-color: var(--ink);
+}
+
+.modal-content {
+    background: var(--bg-panel);
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
+}
+
+.modal-content h3 {
+    font-family: 'Press Start 2P', monospace;
+}
+
+.frames-section,
+.sidebar,
+.canvas-container {
+    backdrop-filter: none;
 }
 
